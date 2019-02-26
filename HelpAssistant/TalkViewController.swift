@@ -1,16 +1,15 @@
 import UIKit
 import AVFoundation
 import Speech
+import SwiftyWave
 
-class TalkViewController: UIViewController {
+
+
+class TalkViewController: UIViewController{
     
     @IBOutlet weak var detectedTextLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var animationView: UIView!
     
-    
-    
-    
+ 
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
@@ -18,8 +17,20 @@ class TalkViewController: UIViewController {
     var isRecording = false
     let instructionBank = InstructionBank()
     
+    let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
+    
+    
+//      let voice = AVSpeechSynthesizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//      voice.delegate = self
+        
+        self.view.addSubview(waveView)
+        waveView.color = UIColor.black
+        waveView.start()
+        
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
@@ -31,6 +42,8 @@ class TalkViewController: UIViewController {
         assistantSpeak(number: 0)
         detectedTextLabel.text = instructionBank.list[0].sentence
         recordAndRecognizeSpeech()
+        
+        
         isRecording = true
     }
     
@@ -41,9 +54,14 @@ class TalkViewController: UIViewController {
         textLine = AVSpeechUtterance(string: instruction)
         textLine.rate = 0.5
         textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-GB_compact")
+        
         voice.speak(textLine)
+        
+      
+        
+        
     }
-
+    
     func recordAndRecognizeSpeech() {
         let node = audioEngine.inputNode
         let recordingFormat = node.outputFormat(forBus: 0)
@@ -63,6 +81,8 @@ class TalkViewController: UIViewController {
             return
         }
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
+            self.waveView.stop()
+            
             if let result = result {
                 let bestString = result.bestTranscription.formattedString
                 var lastString: String = ""
@@ -76,7 +96,8 @@ class TalkViewController: UIViewController {
             }
         })
     }
-
+    
+    
     
     func checkForWordsSaid(resultString: String) {
         switch resultString {
@@ -86,12 +107,14 @@ class TalkViewController: UIViewController {
             print("NEXT")
             assistantSpeak(number: 1)
             detectedTextLabel.text = instructionBank.list[1].sentence
+            waveView.start()
         case "no", "No":
             print("NO")
         case "yes", "Yes":
             print("YES")
             assistantSpeak(number: 3)
             detectedTextLabel.text = instructionBank.list[3].sentence
+            waveView.start()
         case "Scania":
             assistantSpeak(number: 1)
             print("SCANIA")
@@ -99,9 +122,20 @@ class TalkViewController: UIViewController {
             print("HELP")
             assistantSpeak(number: 2)
             detectedTextLabel.text = instructionBank.list[2].sentence
-      
+            waveView.start()
+            
         default: break
         }
     }
+    
+//    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+//        print("Speech finished")
+//
+////        voice.stopSpeaking(at: .immediate)
+//        voice.pauseSpeaking(at: .immediate)
+//            waveView.stop()
+//
+//
+//    }
     
 }

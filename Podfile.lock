@@ -1,0 +1,16 @@
+PODS:
+  - SwiftyWave (1.1.0)
+
+DEPENDENCIES:
+  - SwiftyWave (~> 1.1.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SwiftyWave
+
+SPEC CHECKSUMS:
+  SwiftyWave: 848e6d774d45c82574757d9f991735380628c36d
+
+PODFILE CHECKSUM: bc84c90be4fef10617190cce3d09ec48b5a27b33
+
+COCOAPODS: 1.6.0
