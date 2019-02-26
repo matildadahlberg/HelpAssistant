@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7B71C2D42220495700F96B76 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B71C2D32220495700F96B76 /* AVFoundation.framework */; };
+		7B71C2D622252BF500F96B76 /* InstructionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71C2D522252BF500F96B76 /* InstructionModel.swift */; };
+		7B71C2D822252E8F00F96B76 /* InstructionsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71C2D722252E8F00F96B76 /* InstructionsBank.swift */; };
 		EB270C66222044DE0084169A /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB270C65222044DE0084169A /* TalkViewController.swift */; };
 		EB434D83222034750002153F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB434D82222034750002153F /* AppDelegate.swift */; };
-		EB434D85222034750002153F /* ListenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB434D84222034750002153F /* ListenViewController.swift */; };
 		EB434D88222034750002153F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB434D86222034750002153F /* Main.storyboard */; };
 		EB434D8A222034760002153F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB434D89222034760002153F /* Assets.xcassets */; };
 		EB434D8D222034760002153F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB434D8B222034760002153F /* LaunchScreen.storyboard */; };
@@ -37,10 +38,11 @@
 
 /* Begin PBXFileReference section */
 		7B71C2D32220495700F96B76 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7B71C2D522252BF500F96B76 /* InstructionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionModel.swift; sourceTree = "<group>"; };
+		7B71C2D722252E8F00F96B76 /* InstructionsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsBank.swift; sourceTree = "<group>"; };
 		EB270C65222044DE0084169A /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		EB434D7F222034750002153F /* HelpAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelpAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB434D82222034750002153F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB434D84222034750002153F /* ListenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenViewController.swift; sourceTree = "<group>"; };
 		EB434D87222034750002153F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB434D89222034760002153F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB434D8C222034760002153F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -87,6 +89,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7B71C2D9222554C300F96B76 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B71C2D722252E8F00F96B76 /* InstructionsBank.swift */,
+				7B71C2D522252BF500F96B76 /* InstructionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EB434D76222034750002153F = {
 			isa = PBXGroup;
 			children = (
@@ -111,8 +122,8 @@
 		EB434D81222034750002153F /* HelpAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				7B71C2D9222554C300F96B76 /* Model */,
 				EB434D82222034750002153F /* AppDelegate.swift */,
-				EB434D84222034750002153F /* ListenViewController.swift */,
 				EB270C65222044DE0084169A /* TalkViewController.swift */,
 				EB434D86222034750002153F /* Main.storyboard */,
 				EB434D89222034760002153F /* Assets.xcassets */,
@@ -271,9 +282,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB434D85222034750002153F /* ListenViewController.swift in Sources */,
+				7B71C2D622252BF500F96B76 /* InstructionModel.swift in Sources */,
 				EB270C66222044DE0084169A /* TalkViewController.swift in Sources */,
 				EB434D83222034750002153F /* AppDelegate.swift in Sources */,
+				7B71C2D822252E8F00F96B76 /* InstructionsBank.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
