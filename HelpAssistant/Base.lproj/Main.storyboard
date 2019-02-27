@@ -30,9 +30,6 @@
                                 <state key="normal" title="&quot;FUEL&quot;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="fuelSegue" id="mgV-YL-klY"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-ol-2Hr">
                                 <rect key="frame" x="62" y="461" width="250" height="44"/>
@@ -42,9 +39,6 @@
                                 <state key="normal" title="&quot;TIRE&quot;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="tireSegue" id="0z3-to-wae"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmY-WH-KBd">
                                 <rect key="frame" x="62" y="577" width="250" height="44"/>
@@ -54,9 +48,6 @@
                                 <state key="normal" title="&quot;ENGINE&quot;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="engineSegue" id="M7L-cH-EUl"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yc-vv-c4l">
                                 <rect key="frame" x="62" y="227" width="250" height="44"/>
@@ -66,14 +57,18 @@
                                 <state key="normal" title="&quot;OIL&quot;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="oilSegue" id="tfB-B6-xEi"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Xg6-m0-AbZ"/>
                     </view>
+                    <connections>
+                        <outlet property="engineOutlet" destination="jmY-WH-KBd" id="Sn8-2F-4hI"/>
+                        <outlet property="fuelOutlet" destination="zJx-ly-hfI" id="djc-wF-QT7"/>
+                        <outlet property="oilOutlet" destination="3Yc-vv-c4l" id="e3v-Zl-UrI"/>
+                        <outlet property="tireOutlet" destination="ubm-ol-2Hr" id="7Vq-oR-fP6"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueID" id="KW4-Ue-HLn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEx-IF-gfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -110,7 +105,4 @@
     <resources>
         <image name="regnr" width="1200" height="411"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="mgV-YL-klY"/>
-    </inferredMetricsTieBreakers>
 </document>

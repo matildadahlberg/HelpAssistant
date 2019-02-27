@@ -6,7 +6,7 @@ class InstructionBank {
     
     init() {
         
-        list.append(InstructionModel(sentence: "Hello my name is Scania and I will be your assistant. Make sure that the engine is turned off ", explenation: ""))
+        list.append(InstructionModel(sentence: "Hello my name is Scania and I will be your assistant.", explenation: ""))
         
         list.append(InstructionModel(sentence: "The oil is oliveoil", explenation: "Fill up the oil 10 centimeters"))
         
