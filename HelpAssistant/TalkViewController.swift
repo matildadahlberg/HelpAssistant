@@ -16,19 +16,21 @@ class TalkViewController: UIViewController{
     var recognitionTask: SFSpeechRecognitionTask?
     var isRecording = false
     let instructionBank = InstructionBank()
+    var number = 0
+    
+    let voice = AVSpeechSynthesizer()
+    var textLine = AVSpeechUtterance()
     
     
     let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
     
     
-    //      let voice = AVSpeechSynthesizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(number)
         
-        
-        //      voice.delegate = self
         
         self.view.addSubview(waveView)
         waveView.color = UIColor.black
@@ -42,8 +44,8 @@ class TalkViewController: UIViewController{
         } catch {
             print("Error")
         }
-        assistantSpeak(number: 0)
-        detectedTextLabel.text = instructionBank.list[0].sentence
+        assistantSpeak(number: number)
+        detectedTextLabel.text = instructionBank.list[number].sentence
         recordAndRecognizeSpeech()
         
         
@@ -51,8 +53,6 @@ class TalkViewController: UIViewController{
     }
     
     func assistantSpeak(number : Int) {
-        let voice = AVSpeechSynthesizer()
-        var textLine = AVSpeechUtterance()
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
         textLine.rate = 0.5
@@ -104,28 +104,30 @@ class TalkViewController: UIViewController{
     
     func checkForWordsSaid(resultString: String) {
         switch resultString {
-        case "okay", "Okay":
-            print("OK")
         case "next", "Next":
             print("NEXT")
-            assistantSpeak(number: 1)
-            detectedTextLabel.text = instructionBank.list[1].sentence
+            assistantSpeak(number: number)
+            detectedTextLabel.text = instructionBank.list[number].sentence
             waveView.start()
         case "no", "No":
             print("NO")
         case "yes", "Yes":
             print("YES")
-            assistantSpeak(number: 3)
-            detectedTextLabel.text = instructionBank.list[3].sentence
+            assistantSpeak(number: number)
+            detectedTextLabel.text = instructionBank.list[number].sentence
             waveView.start()
-        case "Scania":
-            assistantSpeak(number: 0)
-            print("SCANIA")
         case "help", "Help":
             print("HELP")
-            assistantSpeak(number: 2)
-            detectedTextLabel.text = instructionBank.list[2].sentence
+            let instruction = instructionBank.list[number].explenation
+            textLine = AVSpeechUtterance(string: instruction)
+            textLine.rate = 0.5
+            textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-GB_compact")
+            
+            voice.speak(textLine)
+            detectedTextLabel.text = instructionBank.list[number].explenation
             waveView.start()
+        case "back", "Back":
+            performSegue(withIdentifier: "backID", sender: self)
             
         default: break
         }

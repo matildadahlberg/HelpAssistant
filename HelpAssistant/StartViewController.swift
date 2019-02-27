@@ -23,6 +23,7 @@ class StartViewController: UIViewController {
     var recognitionTask: SFSpeechRecognitionTask?
     
     let instructionBank = InstructionBank()
+    var number = 0
 
     
     let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
@@ -107,22 +108,28 @@ class StartViewController: UIViewController {
     func checkForWordsSaid(resultString: String) {
         switch resultString {
         case "oil", "Oil":
-            print("OK")
+            number = 1
             performSegue(withIdentifier: "segueID", sender: self)
+            
         case "fuel", "Fuel":
-            print("OK")
+            number = 2
             performSegue(withIdentifier: "segueID", sender: self)
             
         case "tire", "Tire":
-            print("OK")
+            number = 3
             performSegue(withIdentifier: "segueID", sender: self)
             
         case "engine", "Engine":
-            print("OK")
+            number = 4
             performSegue(withIdentifier: "segueID", sender: self)
             
-            
         default: break
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? TalkViewController {
+            vc.number = number
         }
     }
   
