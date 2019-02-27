@@ -116,7 +116,7 @@ class TalkViewController: UIViewController{
             detectedTextLabel.text = instructionBank.list[3].sentence
             waveView.start()
         case "Scania":
-            assistantSpeak(number: 1)
+            assistantSpeak(number: 0)
             print("SCANIA")
         case "help", "Help":
             print("HELP")

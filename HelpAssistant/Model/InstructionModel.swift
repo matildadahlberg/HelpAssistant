@@ -3,10 +3,10 @@ import Foundation
 class InstructionModel {
     
     var sentence : String
-    var state : Int
+    var explenation : String
     
-    init(sentence : String, state : Int) {
+    init(sentence : String, explenation : String) {
         self.sentence = sentence
-        self.state = state
+        self.explenation = explenation
     }
 }
