@@ -14,6 +14,7 @@
 		7B71C2D822252E8F00F96B76 /* InstructionsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71C2D722252E8F00F96B76 /* InstructionsBank.swift */; };
 		7E475DE52CF511AF1B4FBE56 /* Pods_HelpAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2447FE31E4AF0E84966DFB /* Pods_HelpAssistantTests.framework */; };
 		EB270C66222044DE0084169A /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB270C65222044DE0084169A /* TalkViewController.swift */; };
+		EB270CAD2226AF270084169A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB270CAC2226AF270084169A /* StartViewController.swift */; };
 		EB434D83222034750002153F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB434D82222034750002153F /* AppDelegate.swift */; };
 		EB434D88222034750002153F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB434D86222034750002153F /* Main.storyboard */; };
 		EB434D8A222034760002153F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB434D89222034760002153F /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		D15F53547D12FF1EAD2B202D /* Pods_HelpAssistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelpAssistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E8C1D45564F9A953AA924B /* Pods-HelpAssistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpAssistantUITests.debug.xcconfig"; path = "Target Support Files/Pods-HelpAssistantUITests/Pods-HelpAssistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB270C65222044DE0084169A /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
+		EB270CAC2226AF270084169A /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EB434D7F222034750002153F /* HelpAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelpAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB434D82222034750002153F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB434D87222034750002153F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -106,7 +108,6 @@
 				E4E8C1D45564F9A953AA924B /* Pods-HelpAssistantUITests.debug.xcconfig */,
 				86DE0AB4FBB3BD513040453B /* Pods-HelpAssistantUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -162,6 +163,7 @@
 				EB434D89222034760002153F /* Assets.xcassets */,
 				EB434D8B222034760002153F /* LaunchScreen.storyboard */,
 				EB434D8E222034760002153F /* Info.plist */,
+				EB270CAC2226AF270084169A /* StartViewController.swift */,
 			);
 			path = HelpAssistant;
 			sourceTree = "<group>";
@@ -410,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB270CAD2226AF270084169A /* StartViewController.swift in Sources */,
 				7B71C2D622252BF500F96B76 /* InstructionModel.swift in Sources */,
 				EB270C66222044DE0084169A /* TalkViewController.swift in Sources */,
 				EB434D83222034750002153F /* AppDelegate.swift in Sources */,
