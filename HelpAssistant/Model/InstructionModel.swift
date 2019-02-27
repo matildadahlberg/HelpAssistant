@@ -9,4 +9,6 @@ class InstructionModel {
         self.sentence = sentence
         self.explenation = explenation
     }
+    
+    
 }

@@ -9,7 +9,7 @@ class TalkViewController: UIViewController{
     
     @IBOutlet weak var detectedTextLabel: UILabel!
     
- 
+    
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
@@ -17,15 +17,18 @@ class TalkViewController: UIViewController{
     var isRecording = false
     let instructionBank = InstructionBank()
     
+    
     let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
     
     
-//      let voice = AVSpeechSynthesizer()
+    //      let voice = AVSpeechSynthesizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//      voice.delegate = self
+        
+        
+        //      voice.delegate = self
         
         self.view.addSubview(waveView)
         waveView.color = UIColor.black
@@ -57,7 +60,7 @@ class TalkViewController: UIViewController{
         
         voice.speak(textLine)
         
-      
+        
         
         
     }
@@ -128,14 +131,6 @@ class TalkViewController: UIViewController{
         }
     }
     
-//    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-//        print("Speech finished")
-//
-////        voice.stopSpeaking(at: .immediate)
-//        voice.pauseSpeaking(at: .immediate)
-//            waveView.stop()
-//
-//
-//    }
+  
     
 }
