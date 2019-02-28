@@ -61,14 +61,11 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         var textLine = AVSpeechUtterance()
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
-        textLine.rate = 0.3
-        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-GB_compact")
+        textLine.rate = 0.4
+        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
         
         voice.speak(textLine)
-        
-        
-        
-        
+    
         
         
     }

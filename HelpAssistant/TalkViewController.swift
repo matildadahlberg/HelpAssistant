@@ -59,8 +59,8 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     func assistantSpeak(number : Int) {
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
-        textLine.rate = 0.3
-        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-GB_compact")
+        textLine.rate = 0.4
+        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
         
         voice.speak(textLine)
         
@@ -98,6 +98,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
                 }
                 self.checkForWordsSaid(resultString: lastString)
               
+              
             } else if let error = error {
                 print(error)
             }
@@ -106,23 +107,32 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
     
 
-    
+ 
     
     
     func checkForWordsSaid(resultString: String) {
         switch resultString {
         case "repeat", "Repeat":
             print("NEXT")
-            assistantSpeak(number: number)
-            detectedTextLabel.text = instructionBank.list[number].sentence
+//            assistantSpeak(number: number)
+//            detectedTextLabel.text = instructionBank.list[number].sentence
+            let instruction = instructionBank.list[number].sentence
+            textLine = AVSpeechUtterance(string: instruction)
+            textLine.rate = 0.4
+            textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
+            if self.isFinal {
+                voice.speak(textLine)
+                isFinal = false
+                
+            }
             waveView.start()
         
         case "help", "Help":
             print("HELP")
             let instruction = instructionBank.list[number].explenation
             textLine = AVSpeechUtterance(string: instruction)
-            textLine.rate = 0.3
-            textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-GB_compact")
+            textLine.rate = 0.4
+            textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
             
             detectedTextLabel.text = instructionBank.list[number].explenation
             if self.isFinal {
@@ -144,7 +154,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
         waveView.stop()
         if isFinal == false{
             self.voice.stopSpeaking(at: .word)
-            
+            isFinal = true
         }
         
     }
