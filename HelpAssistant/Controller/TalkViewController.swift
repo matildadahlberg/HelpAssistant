@@ -87,7 +87,6 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     func checkForWordsSaid(resultString: String) {
         switch resultString {
         case "repeat", "Repeat":
-            print("NEXT")
             let instruction = instructionBank.list[number].sentence
             textLine = AVSpeechUtterance(string: instruction)
             textLine.rate = 0.4
@@ -100,7 +99,6 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
             waveView.start()
         
         case "help", "Help":
-            print("HELP")
             let instruction = instructionBank.list[number].explenation
             textLine = AVSpeechUtterance(string: instruction)
             textLine.rate = 0.4
