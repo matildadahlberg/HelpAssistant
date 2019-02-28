@@ -4,17 +4,14 @@ import Speech
 import SwiftyWave
 
 class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
-    @IBOutlet weak var oilOutlet: UIButton!
-    @IBOutlet weak var fuelOutlet: UIButton!
-    @IBOutlet weak var tireOutlet: UIButton!
-    @IBOutlet weak var engineOutlet: UIButton!
+
+    @IBOutlet var allTheButtons: [UIButton]! // this is an Outlet Collection, made from the storyboard
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
     
     let instructionBank = InstructionBank()
-    var number = 0
     let voice = AVSpeechSynthesizer()
     let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
     
@@ -27,10 +24,9 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         
         voice.delegate = self
         
-        oilOutlet.layer.cornerRadius = 15
-        fuelOutlet.layer.cornerRadius = 15
-        tireOutlet.layer.cornerRadius = 15
-        engineOutlet.layer.cornerRadius = 15
+        allTheButtons.forEach { (button) in
+            button.layer.cornerRadius = 15
+        }
 
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -39,13 +35,20 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         } catch {
             print("Error")
         }
-        assistantSpeak(number: 0)
+        assistantSpeak(instructionModel: .welcome)
         recordAndRecognizeSpeech()
     }
     
-    func assistantSpeak(number : Int) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        allTheButtons.forEach { (button) in
+            button.isUserInteractionEnabled = true
+        }
+    }
+    
+    func assistantSpeak(instructionModel: InstructionModel) {
         var textLine = AVSpeechUtterance()
-        let instruction = instructionBank.list[number].sentence
+        let instruction = instructionModel.sentence
         textLine = AVSpeechUtterance(string: instruction)
         textLine.rate = 0.4
         textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
@@ -86,31 +89,28 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
     
     func checkForWordsSaid(resultString: String) {
-        switch resultString {
+        switch resultString { // if you .lowerCase the string first, then you don't need to handle all the case variations
         case "oil", "Oil":
-            number = 1
-            performSegue(withIdentifier: "segueID", sender: self)
+            performSegue(withIdentifier: "segueID", sender: 1)
         case "fuel", "Fuel":
-            number = 2
-            performSegue(withIdentifier: "segueID", sender: self)
+            performSegue(withIdentifier: "segueID", sender: 2)
         case "tire", "Tire":
-            number = 3
-            performSegue(withIdentifier: "segueID", sender: self)
+            performSegue(withIdentifier: "segueID", sender: 3)
         case "engine", "Engine":
-            number = 4
-            performSegue(withIdentifier: "segueID", sender: self)
+            performSegue(withIdentifier: "segueID", sender: 4)
         default: break
         }
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        let button = sender as! UIButton
-        let number = button.tag
-        self.number = number
+        let button = sender as? UIButton
+        button?.isUserInteractionEnabled = false
+        // maybe need to check if an animation is already in progress before calling performSegue.
+        self.performSegue(withIdentifier: "segueID", sender: button?.tag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? TalkViewController {
+        if let vc = segue.destination as? TalkViewController, let number = sender as? Int {
             vc.number = number
         }
     }
