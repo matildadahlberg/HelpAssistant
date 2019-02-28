@@ -22,7 +22,7 @@
                                 <rect key="frame" x="32" y="44" width="310" height="142"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-ly-hfI">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-ly-hfI">
                                 <rect key="frame" x="62" y="342" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,8 +30,12 @@
                                 <state key="normal" title="&quot;FUEL&quot;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="hHL-T0-ayn"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="haT-6J-zbE"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-ol-2Hr">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-ol-2Hr">
                                 <rect key="frame" x="62" y="461" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,8 +43,12 @@
                                 <state key="normal" title="&quot;TIRE&quot;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="EVv-ZH-tl2"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Ki0-9O-I4c"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmY-WH-KBd">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmY-WH-KBd">
                                 <rect key="frame" x="62" y="577" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,8 +56,12 @@
                                 <state key="normal" title="&quot;ENGINE&quot;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="5iF-ZI-Xk3"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="xeg-De-Qw1"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yc-vv-c4l">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yc-vv-c4l">
                                 <rect key="frame" x="62" y="227" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -57,6 +69,10 @@
                                 <state key="normal" title="&quot;OIL&quot;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="BQT-5h-74d"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Iv6-pg-90E"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,6 +121,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="zbn-Cu-e8c" id="Mfl-Vr-lzF"/>
                         <outlet property="detectedTextLabel" destination="VG9-Ic-I9A" id="xne-jC-b2D"/>
                         <segue destination="jqE-We-neU" kind="show" identifier="backID" id="aDN-E4-YdW"/>
                     </connections>
@@ -118,6 +135,7 @@
         <image name="regnr" width="1200" height="411"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Iv6-pg-90E"/>
         <segue reference="aDN-E4-YdW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -125,10 +125,29 @@
 		7B71C2D9222554C300F96B76 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7B71C2D722252E8F00F96B76 /* InstructionsBank.swift */,
 				7B71C2D522252BF500F96B76 /* InstructionModel.swift */,
+				7B71C2D722252E8F00F96B76 /* InstructionsBank.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7B71C3202227F1FF00F96B76 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EB434D82222034750002153F /* AppDelegate.swift */,
+				EB270CAC2226AF270084169A /* StartViewController.swift */,
+				EB270C65222044DE0084169A /* TalkViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7B71C3212227F21100F96B76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB434D8B222034760002153F /* LaunchScreen.storyboard */,
+				EB434D86222034750002153F /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EB434D76222034750002153F = {
@@ -157,13 +176,10 @@
 			isa = PBXGroup;
 			children = (
 				7B71C2D9222554C300F96B76 /* Model */,
-				EB434D82222034750002153F /* AppDelegate.swift */,
-				EB270C65222044DE0084169A /* TalkViewController.swift */,
-				EB434D86222034750002153F /* Main.storyboard */,
+				7B71C3212227F21100F96B76 /* View */,
+				7B71C3202227F1FF00F96B76 /* Controller */,
 				EB434D89222034760002153F /* Assets.xcassets */,
-				EB434D8B222034760002153F /* LaunchScreen.storyboard */,
 				EB434D8E222034760002153F /* Info.plist */,
-				EB270CAC2226AF270084169A /* StartViewController.swift */,
 			);
 			path = HelpAssistant;
 			sourceTree = "<group>";

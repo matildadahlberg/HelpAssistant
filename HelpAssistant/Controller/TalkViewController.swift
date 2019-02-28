@@ -1,48 +1,34 @@
-//
-//  StartViewController.swift
-//  HelpAssistant
-//
-//  Created by Matilda Dahlberg on 2019-02-27.
-//  Copyright © 2019 Matilda Dahlberg. All rights reserved.
-//
-
 import UIKit
 import AVFoundation
 import Speech
 import SwiftyWave
 
-class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
-    @IBOutlet weak var oilOutlet: UIButton!
+class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
-    @IBOutlet weak var fuelOutlet: UIButton!
-    @IBOutlet weak var tireOutlet: UIButton!
-    @IBOutlet weak var engineOutlet: UIButton!
+    @IBOutlet weak var detectedTextLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
+    
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
-    
     let instructionBank = InstructionBank()
     var number = 0
-
+    var isListening: Bool = false
     let voice = AVSpeechSynthesizer()
-    
+    var textLine = AVSpeechUtterance()
+    var isFinal = false
+
     let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        backButton.layer.cornerRadius = 15
+        isFinal = true
+        voice.delegate = self
         self.view.addSubview(waveView)
         waveView.color = UIColor.black
         waveView.start()
-        
-        voice.delegate = self
-        
-        oilOutlet.layer.cornerRadius = 15
-        fuelOutlet.layer.cornerRadius = 15
-        tireOutlet.layer.cornerRadius = 15
-        engineOutlet.layer.cornerRadius = 15
-        
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
@@ -51,23 +37,17 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         } catch {
             print("Error")
         }
-        assistantSpeak(number: 0)
+        assistantSpeak(number: number)
+        detectedTextLabel.text = instructionBank.list[number].sentence
         recordAndRecognizeSpeech()
-        
     }
     
     func assistantSpeak(number : Int) {
-//        let voice = AVSpeechSynthesizer()
-        var textLine = AVSpeechUtterance()
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
         textLine.rate = 0.4
         textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
-        
         voice.speak(textLine)
-    
-        
-        
     }
     
     func recordAndRecognizeSpeech() {
@@ -89,8 +69,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
             return
         }
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
-         
-            
+
             if let result = result {
                 let bestString = result.bestTranscription.formattedString
                 var lastString: String = ""
@@ -105,39 +84,46 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         })
     }
     
-    
-    
     func checkForWordsSaid(resultString: String) {
         switch resultString {
-        case "oil", "Oil":
-            number = 1
-            performSegue(withIdentifier: "segueID", sender: self)
-            
-        case "fuel", "Fuel":
-            number = 2
-            performSegue(withIdentifier: "segueID", sender: self)
-            
-        case "tire", "Tire":
-            number = 3
-            performSegue(withIdentifier: "segueID", sender: self)
-            
-        case "engine", "Engine":
-            number = 4
-            performSegue(withIdentifier: "segueID", sender: self)
-            
+        case "repeat", "Repeat":
+            print("NEXT")
+            let instruction = instructionBank.list[number].sentence
+            textLine = AVSpeechUtterance(string: instruction)
+            textLine.rate = 0.4
+            textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
+            detectedTextLabel.text = instructionBank.list[number].sentence
+            if self.isFinal {
+                voice.speak(textLine)
+                isFinal = false
+            }
+            waveView.start()
+        
+        case "help", "Help":
+            print("HELP")
+            let instruction = instructionBank.list[number].explenation
+            textLine = AVSpeechUtterance(string: instruction)
+            textLine.rate = 0.4
+            textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
+            detectedTextLabel.text = instructionBank.list[number].explenation
+            if self.isFinal {
+                voice.speak(textLine)
+                isFinal = false
+            }
+            waveView.start()
+        case "back", "Back":
+            performSegue(withIdentifier: "backID", sender: self)
         default: break
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? TalkViewController {
-            vc.number = number
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        print("speech finished")
+        waveView.stop()
+        if isFinal == false{
+            self.voice.stopSpeaking(at: .word)
+            isFinal = true
         }
     }
-  
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        print("finish")
-        waveView.stop()
-    }
-    
+   
 }
