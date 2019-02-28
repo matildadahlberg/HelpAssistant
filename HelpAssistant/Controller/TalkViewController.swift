@@ -6,7 +6,8 @@ import SwiftyWave
 class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     @IBOutlet weak var detectedTextLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var waveAnimation: SwiftyWaveView!
     
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
@@ -19,18 +20,12 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     var textLine = AVSpeechUtterance()
     var isFinal = false
 
-    let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        backButton.layer.cornerRadius = 15
         isFinal = true
         voice.delegate = self
-        self.view.addSubview(waveView)
-        waveView.color = UIColor.black
-        waveView.start()
+        waveAnimation.start()
         let audioSession = AVAudioSession.sharedInstance()
-        
         do {
             try audioSession.setCategory(AVAudioSession.Category.playAndRecord, mode: .spokenAudio, options: .defaultToSpeaker)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
@@ -41,7 +36,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
         detectedTextLabel.text = instructionBank.list[number].sentence
         recordAndRecognizeSpeech()
     }
-    
+
     func assistantSpeak(number : Int) {
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
@@ -96,7 +91,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
                 voice.speak(textLine)
                 isFinal = false
             }
-            waveView.start()
+            waveAnimation.start()
         
         case "help", "Help":
             let instruction = instructionBank.list[number].explenation
@@ -108,7 +103,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
                 voice.speak(textLine)
                 isFinal = false
             }
-            waveView.start()
+            waveAnimation.start()
         case "back", "Back":
             performSegue(withIdentifier: "backID", sender: self)
         default: break
@@ -117,7 +112,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         print("speech finished")
-        waveView.stop()
+        waveAnimation.stop()
         if isFinal == false{
             self.voice.stopSpeaking(at: .word)
             isFinal = true

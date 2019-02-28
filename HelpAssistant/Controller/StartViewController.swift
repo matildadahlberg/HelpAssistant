@@ -6,6 +6,9 @@ import SwiftyWave
 class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
 
     @IBOutlet var allTheButtons: [UIButton]! // this is an Outlet Collection, made from the storyboard
+    
+    @IBOutlet weak var waveAnimation: SwiftyWaveView!
+    
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
@@ -13,19 +16,15 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     let instructionBank = InstructionBank()
     let voice = AVSpeechSynthesizer()
-    let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.addSubview(waveView)
-        waveView.color = UIColor.black
-        waveView.start()
-        
+        waveAnimation.start()
         voice.delegate = self
-        
         allTheButtons.forEach { (button) in
             button.layer.cornerRadius = 15
+            button.layer.borderColor = UIColor.red.cgColor
+            button.layer.borderWidth = 1
         }
 
         let audioSession = AVAudioSession.sharedInstance()
@@ -116,8 +115,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
   
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        print("finish")
-        waveView.stop()
+        waveAnimation.stop()
     }
     
 }

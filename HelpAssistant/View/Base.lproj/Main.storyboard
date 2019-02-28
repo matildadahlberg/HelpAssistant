@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Start View Controller-->
+        <!--Help Assistant-->
         <scene sceneID="jIl-DQ-PFR">
             <objects>
                 <viewController id="jqE-We-neU" customClass="StartViewController" customModule="HelpAssistant" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,10 +39,6 @@
                                         <state key="normal" title="&quot;TIRE&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="EVv-ZH-tl2"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="Ki0-9O-I4c"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-ly-hfI">
                                         <rect key="frame" x="16" y="99" width="343" height="65"/>
@@ -55,10 +51,6 @@
                                         <state key="normal" title="&quot;FUEL&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="hHL-T0-ayn"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="haT-6J-zbE"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yc-vv-c4l">
                                         <rect key="frame" x="16" y="14" width="343" height="65"/>
@@ -71,10 +63,6 @@
                                         <state key="normal" title="&quot;OIL&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="BQT-5h-74d"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="Iv6-pg-90E"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmY-WH-KBd">
                                         <rect key="frame" x="16" y="269" width="343" height="65"/>
@@ -87,10 +75,6 @@
                                         <state key="normal" title="&quot;ENGINE&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="5iF-ZI-Xk3"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="xeg-De-Qw1"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -132,13 +116,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xg6-m0-AbZ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ta0-00-4NV"/>
+                    <navigationItem key="navigationItem" title="Help Assistant" id="ta0-00-4NV">
+                        <barButtonItem key="backBarButtonItem" title=" " id="GIS-4H-Koo"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="engineOutlet" destination="jmY-WH-KBd" id="Sn8-2F-4hI"/>
-                        <outlet property="fuelOutlet" destination="zJx-ly-hfI" id="djc-wF-QT7"/>
-                        <outlet property="oilOutlet" destination="3Yc-vv-c4l" id="e3v-Zl-UrI"/>
-                        <outlet property="tireOutlet" destination="ubm-ol-2Hr" id="7Vq-oR-fP6"/>
-                        <outlet property="waveAnimation" destination="aHB-FQ-4WV" id="uTE-Dn-uas"/>
+                        <outlet property="waveAnimation" destination="aHB-FQ-4WV" id="SBc-hZ-obp"/>
+                        <outletCollection property="allTheButtons" destination="3Yc-vv-c4l" collectionClass="NSMutableArray" id="glC-fe-iRf"/>
+                        <outletCollection property="allTheButtons" destination="zJx-ly-hfI" collectionClass="NSMutableArray" id="utP-bJ-Q6H"/>
+                        <outletCollection property="allTheButtons" destination="ubm-ol-2Hr" collectionClass="NSMutableArray" id="ceb-5W-RYL"/>
+                        <outletCollection property="allTheButtons" destination="jmY-WH-KBd" collectionClass="NSMutableArray" id="1Pg-nB-yCz"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="segueID" id="KW4-Ue-HLn"/>
                     </connections>
                 </viewController>
@@ -178,6 +164,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.095182918010000006" green="0.17053368690000001" blue="0.34903788569999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Hlw-Nj-Ru9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0Bc-Ys-gEO"/>
                             <constraint firstItem="VG9-Ic-I9A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JIv-3l-lRW"/>
@@ -188,7 +175,7 @@
                     </view>
                     <connections>
                         <outlet property="detectedTextLabel" destination="VG9-Ic-I9A" id="xne-jC-b2D"/>
-                        <outlet property="waveAnimation" destination="Hlw-Nj-Ru9" id="euR-r1-xad"/>
+                        <outlet property="waveAnimation" destination="Hlw-Nj-Ru9" id="TyG-jH-SuP"/>
                         <segue destination="jLp-2O-aQm" kind="show" identifier="backID" id="aDN-E4-YdW"/>
                     </connections>
                 </viewController>
@@ -204,6 +191,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VxI-xb-Dsv">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.095182918010000006" green="0.17053368690000001" blue="0.34903788569999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -218,7 +210,5 @@
     <resources>
         <image name="regnr" width="1200" height="411"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="KW4-Ue-HLn"/>
-    </inferredMetricsTieBreakers>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
