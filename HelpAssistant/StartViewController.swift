@@ -11,7 +11,7 @@ import AVFoundation
 import Speech
 import SwiftyWave
 
-class StartViewController: UIViewController {
+class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     @IBOutlet weak var oilOutlet: UIButton!
     
     @IBOutlet weak var fuelOutlet: UIButton!
@@ -25,6 +25,7 @@ class StartViewController: UIViewController {
     let instructionBank = InstructionBank()
     var number = 0
 
+    let voice = AVSpeechSynthesizer()
     
     let waveView = SwiftyWaveView(frame: CGRect(x: 5, y: 650, width: 375, height: 100))
     
@@ -34,6 +35,8 @@ class StartViewController: UIViewController {
         self.view.addSubview(waveView)
         waveView.color = UIColor.black
         waveView.start()
+        
+        voice.delegate = self
         
         oilOutlet.layer.cornerRadius = 15
         fuelOutlet.layer.cornerRadius = 15
@@ -54,14 +57,16 @@ class StartViewController: UIViewController {
     }
     
     func assistantSpeak(number : Int) {
-        let voice = AVSpeechSynthesizer()
+//        let voice = AVSpeechSynthesizer()
         var textLine = AVSpeechUtterance()
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
-        textLine.rate = 0.5
+        textLine.rate = 0.3
         textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-GB_compact")
         
         voice.speak(textLine)
+        
+        
         
         
         
@@ -87,7 +92,7 @@ class StartViewController: UIViewController {
             return
         }
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
-            self.waveView.stop()
+         
             
             if let result = result {
                 let bestString = result.bestTranscription.formattedString
@@ -133,5 +138,9 @@ class StartViewController: UIViewController {
         }
     }
   
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        print("finish")
+        waveView.stop()
+    }
     
 }

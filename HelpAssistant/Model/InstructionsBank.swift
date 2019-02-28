@@ -8,7 +8,7 @@ class InstructionBank {
         
         list.append(InstructionModel(sentence: "Hello my name is Scania and I will be your assistant.", explenation: ""))
         
-        list.append(InstructionModel(sentence: "The oil is oliveoil", explenation: "Fill up the oil 10 centimeters"))
+        list.append(InstructionModel(sentence: "The oil is olive oil", explenation: "Fill up the oil 10 centimeters"))
         
         list.append(InstructionModel(sentence: "Fuel is deisel", explenation: "Fill the diesel with 1 liter"))
         
