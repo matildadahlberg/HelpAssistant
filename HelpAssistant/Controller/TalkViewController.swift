@@ -13,8 +13,8 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
-    let instructionBank = InstructionBank()
     var number = 0
+    let instructionBank = InstructionBank()
     var isListening: Bool = false
     let voice = AVSpeechSynthesizer()
     var textLine = AVSpeechUtterance()
@@ -36,8 +36,9 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
         detectedTextLabel.text = instructionBank.list[number].sentence
         recordAndRecognizeSpeech()
     }
-
-    func assistantSpeak(number : Int) {
+    
+    func assistantSpeak(number: Int) {
+        var textLine = AVSpeechUtterance()
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
         textLine.rate = 0.4
@@ -70,7 +71,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
                 var lastString: String = ""
                 for segment in result.bestTranscription.segments {
                     let indexTo = bestString.index(bestString.startIndex, offsetBy: segment.substringRange.location)
-                    lastString = bestString.substring(from: indexTo)
+                    lastString = bestString.substring(from: indexTo).lowercased()
                 }
                 self.checkForWordsSaid(resultString: lastString)
             } else if let error = error {
@@ -81,7 +82,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     func checkForWordsSaid(resultString: String) {
         switch resultString {
-        case "repeat", "Repeat":
+        case "repeat":
             let instruction = instructionBank.list[number].sentence
             textLine = AVSpeechUtterance(string: instruction)
             textLine.rate = 0.4
@@ -93,7 +94,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
             }
             waveAnimation.start()
         
-        case "help", "Help":
+        case "help":
             let instruction = instructionBank.list[number].explenation
             textLine = AVSpeechUtterance(string: instruction)
             textLine.rate = 0.4
@@ -104,7 +105,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
                 isFinal = false
             }
             waveAnimation.start()
-        case "back", "Back":
+        case "back":
             performSegue(withIdentifier: "backID", sender: self)
         default: break
         }
@@ -118,5 +119,10 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
             isFinal = true
         }
     }
-   
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            voice.stopSpeaking(at: .immediate)
+            waveAnimation.stop()
+        }
+
 }
