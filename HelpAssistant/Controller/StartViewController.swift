@@ -8,14 +8,13 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     @IBOutlet var allTheButtons: [UIButton]! // this is an Outlet Collection, made from the storyboard
     
     @IBOutlet weak var waveAnimation: SwiftyWaveView!
-    
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
-    
     let instructionBank = InstructionBank()
     let voice = AVSpeechSynthesizer()
+    var number = 0
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         } catch {
             print("Error")
         }
-        assistantSpeak(instructionModel: .welcome)
+        assistantSpeak(number: number)
         recordAndRecognizeSpeech()
     }
     
@@ -45,9 +44,9 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         }
     }
     
-    func assistantSpeak(instructionModel: InstructionModel) {
+    func assistantSpeak(number: Int) {
         var textLine = AVSpeechUtterance()
-        let instruction = instructionModel.sentence
+        let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
         textLine.rate = 0.4
         textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
@@ -78,7 +77,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
                 var lastString: String = ""
                 for segment in result.bestTranscription.segments {
                     let indexTo = bestString.index(bestString.startIndex, offsetBy: segment.substringRange.location)
-                    lastString = bestString.substring(from: indexTo)
+                    lastString = bestString.substring(from: indexTo).lowercased()
                 }
                 self.checkForWordsSaid(resultString: lastString)
             } else if let error = error {
@@ -88,14 +87,14 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
     
     func checkForWordsSaid(resultString: String) {
-        switch resultString { // if you .lowerCase the string first, then you don't need to handle all the case variations
-        case "oil", "Oil":
+        switch resultString {
+        case "oil":
             performSegue(withIdentifier: "segueID", sender: 1)
-        case "fuel", "Fuel":
+        case "fuel":
             performSegue(withIdentifier: "segueID", sender: 2)
-        case "tire", "Tire":
+        case "tire":
             performSegue(withIdentifier: "segueID", sender: 3)
-        case "engine", "Engine":
+        case "engine":
             performSegue(withIdentifier: "segueID", sender: 4)
         default: break
         }
@@ -105,12 +104,16 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         let button = sender as? UIButton
         button?.isUserInteractionEnabled = false
         // maybe need to check if an animation is already in progress before calling performSegue.
+        voice.stopSpeaking(at: .word)
+        waveAnimation.stop()
         self.performSegue(withIdentifier: "segueID", sender: button?.tag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? TalkViewController, let number = sender as? Int {
             vc.number = number
+            voice.stopSpeaking(at: .immediate)
+            waveAnimation.stop()
         }
     }
   

@@ -1,9 +1,5 @@
 import Foundation
 
-extension InstructionModel {
-    static let welcome = InstructionModel(sentence: "Hello my name is Scania and I will be your assistant.", explenation: "")
-}
-
 class InstructionBank {
     // consider moving all these to an Extension on Instruction Model
     // then you get named things, rather than relying on indexes in a list

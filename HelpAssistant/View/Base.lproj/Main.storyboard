@@ -39,6 +39,9 @@
                                         <state key="normal" title="&quot;TIRE&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="mVD-bG-P1y"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-ly-hfI">
                                         <rect key="frame" x="16" y="99" width="343" height="65"/>
@@ -51,6 +54,9 @@
                                         <state key="normal" title="&quot;FUEL&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="16Z-Ii-Li9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yc-vv-c4l">
                                         <rect key="frame" x="16" y="14" width="343" height="65"/>
@@ -63,6 +69,9 @@
                                         <state key="normal" title="&quot;OIL&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="UNB-vb-zd2"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmY-WH-KBd">
                                         <rect key="frame" x="16" y="269" width="343" height="65"/>
@@ -75,6 +84,9 @@
                                         <state key="normal" title="&quot;ENGINE&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="jqE-We-neU" eventType="touchUpInside" id="cLp-41-h9k"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
