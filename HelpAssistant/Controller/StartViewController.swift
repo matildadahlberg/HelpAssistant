@@ -15,7 +15,6 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     let instructionBank = InstructionBank()
     let voice = AVSpeechSynthesizer()
     var number = 0
-    var numberHEJ = 0
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,10 +83,8 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
                 for segment in result.bestTranscription.segments {
                     let indexTo = bestString.index(bestString.startIndex, offsetBy: segment.substringRange.location)
                     lastString = bestString.substring(from: indexTo).lowercased()
-                    self.numberHEJ += 1
                 }
                 self.checkForWordsSaid(resultString: lastString)
-                print("Nummer \(self.numberHEJ)")
             } else if let error = error {
                 print(error)
             }
