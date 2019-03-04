@@ -11,7 +11,7 @@ import AVFoundation
 
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate {
-   
+    
     var list = ["Male", "Female"]
     
     @IBOutlet weak var tableView: UITableView!
@@ -21,11 +21,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     let instructionBank = InstructionBank()
     let voice = AVSpeechSynthesizer()
     var number = 0
-
+    
+    var textLine = AVSpeechUtterance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -47,6 +48,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.textLabel?.textColor = UIColor.white
         
         
+        
+        
+        
         return cell
     }
     
@@ -55,43 +59,72 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         print("table row switch Changed \(sender.tag)")
         if sender.tag == 0{
             assistantSpeakMale(number: number)
-         
         }
         if sender.tag == 1{
             assistantSpeakFemale(number: number)
         }
-        print("The switch is \(sender.isOn ? "ON" : "OFF")")
+        
+        if sender.isOn {
+            print("switch is on")
+        } else {
+            print("switch is off")
+        }
+        
         if !sender.isOn {
             voice.stopSpeaking(at: .immediate)
         }
-
+        
     }
     
-  
-    
-
     
     @IBAction func sliderValue(_ sender: UISlider) {
-       
-//        textfield.text = String(sender.value)
+        
+        slider.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
+    }
+    
+    @objc func onSliderValChanged(slider: UISlider, event: UIEvent) {
+        if let touchEvent = event.allTouches?.first {
+            switch touchEvent.phase {
+            case .began:
+                print("touch began")
+            // handle drag began
+            case .moved:
+                var textLine = AVSpeechUtterance()
+                let instruction = instructionBank.list[number].sentence
+                textLine = AVSpeechUtterance(string: instruction)
+                textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-US_compact")
+                textLine.rate = slider.value
+                
+                voice.speak(textLine)
+                print("touch move")
+            // handle drag moved
+            case .ended:
+                print("touch ended")
+                voice.stopSpeaking(at: .word)
+            // handle drag ended
+            default:
+                break
+            }
+        }
     }
     
     func assistantSpeakFemale(number: Int) {
-        var textLine = AVSpeechUtterance()
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
-        textLine.rate = 0.4
         textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
+        textLine.rate = slider.value
+        
         voice.speak(textLine)
     }
     func assistantSpeakMale(number: Int) {
         var textLine = AVSpeechUtterance()
         let instruction = instructionBank.list[number].sentence
         textLine = AVSpeechUtterance(string: instruction)
-        textLine.rate = 0.4
         textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-US_compact")
+        textLine.rate = slider.value
+        
         voice.speak(textLine)
     }
     
-
+    
 }
