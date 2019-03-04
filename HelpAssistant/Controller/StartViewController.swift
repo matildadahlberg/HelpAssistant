@@ -25,6 +25,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
             button.layer.borderColor = UIColor.red.cgColor
             button.layer.borderWidth = 1
         }
+        
 
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -72,6 +73,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
             return
         }
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
+        
             if let result = result {
                 let bestString = result.bestTranscription.formattedString
                 var lastString: String = ""
@@ -94,6 +96,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
             performSegue(withIdentifier: "segueID", sender: 2)
         case "tire":
             performSegue(withIdentifier: "segueID", sender: 3)
+            print("TIRE SEGUE")
         case "engine":
             performSegue(withIdentifier: "segueID", sender: 4)
         default: break
@@ -113,12 +116,25 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         if let vc = segue.destination as? TalkViewController, let number = sender as? Int {
             vc.number = number
             voice.stopSpeaking(at: .immediate)
+            recognitionTask?.cancel()
             waveAnimation.stop()
         }
+        
+            voice.stopSpeaking(at: .immediate)
+            recognitionTask?.cancel()
+        
     }
   
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         waveAnimation.stop()
     }
+    
+    @IBAction func settingPressed(_ sender: Any) {
+        voice.stopSpeaking(at: .immediate)
+        recognitionTask?.cancel()
+       
+        
+    }
+    
     
 }

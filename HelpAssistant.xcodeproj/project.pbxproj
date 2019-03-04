@@ -21,6 +21,7 @@
 		EB434D8D222034760002153F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB434D8B222034760002153F /* LaunchScreen.storyboard */; };
 		EB434D98222034760002153F /* HelpAssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB434D97222034760002153F /* HelpAssistantTests.swift */; };
 		EB434DA3222034760002153F /* HelpAssistantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB434DA2222034760002153F /* HelpAssistantUITests.swift */; };
+		EBA637B3222D283200AF3DB7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA637B2222D283200AF3DB7 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		EB434D9E222034760002153F /* HelpAssistantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelpAssistantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB434DA2222034760002153F /* HelpAssistantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAssistantUITests.swift; sourceTree = "<group>"; };
 		EB434DA4222034760002153F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBA637B2222D283200AF3DB7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F60F1430EDF3CC54B04F006C /* Pods-HelpAssistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpAssistantTests.release.xcconfig"; path = "Target Support Files/Pods-HelpAssistantTests/Pods-HelpAssistantTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 				EB434D82222034750002153F /* AppDelegate.swift */,
 				EB270CAC2226AF270084169A /* StartViewController.swift */,
 				EB270C65222044DE0084169A /* TalkViewController.swift */,
+				EBA637B2222D283200AF3DB7 /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				EB270C66222044DE0084169A /* TalkViewController.swift in Sources */,
 				EB434D83222034750002153F /* AppDelegate.swift in Sources */,
 				7B71C2D822252E8F00F96B76 /* InstructionsBank.swift in Sources */,
+				EBA637B3222D283200AF3DB7 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

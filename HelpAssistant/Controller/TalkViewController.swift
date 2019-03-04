@@ -19,7 +19,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     let voice = AVSpeechSynthesizer()
     var textLine = AVSpeechUtterance()
     var isFinal = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         isFinal = true
@@ -65,7 +65,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
             return
         }
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
-
+            
             if let result = result {
                 let bestString = result.bestTranscription.formattedString
                 var lastString: String = ""
@@ -93,7 +93,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
                 isFinal = false
             }
             waveAnimation.start()
-        
+            
         case "help":
             let instruction = instructionBank.list[number].explenation
             textLine = AVSpeechUtterance(string: instruction)
@@ -121,8 +121,9 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            voice.stopSpeaking(at: .immediate)
-            waveAnimation.stop()
-        }
-
+        voice.stopSpeaking(at: .immediate)
+        recognitionTask?.cancel()
+        waveAnimation.stop()
+    }
+    
 }
