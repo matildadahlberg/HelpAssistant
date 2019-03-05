@@ -1,33 +1,17 @@
-//
-//  SettingsViewController.swift
-//  HelpAssistant
-//
-//  Created by Matilda Dahlberg on 2019-03-04.
-//  Copyright © 2019 Matilda Dahlberg. All rights reserved.
-//
-
 import UIKit
 import AVFoundation
 
-
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate {
     
-    var list = ["Male", "Female"]
+    var list = ["Female", "Male"]
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var slider: UISlider!
     
-    let instructionBank = InstructionBank()
-    let voice = AVSpeechSynthesizer()
-    var number = 0
-    
-    var textLine = AVSpeechUtterance()
+    var assistantSpeak = AssistantSpeak()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,20 +19,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        //here is programatically switch make to the table view
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let switchView = UISwitch(frame: .zero)
-        switchView.setOn(false, animated: true)
-        switchView.tag = indexPath.row // for detect which row switch Changed
+        switchView.tag = indexPath.row
         
-        switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        switchView.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
         cell.accessoryView = switchView
         cell.textLabel?.text = list[indexPath.row]
         cell.textLabel?.textColor = UIColor.white
-        
-        
-        
         
         
         return cell
@@ -56,22 +34,20 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @objc func switchChanged(_ sender : UISwitch!){
         
-        print("table row switch Changed \(sender.tag)")
-        if sender.tag == 0{
-            assistantSpeakMale(number: number)
-        }
-        if sender.tag == 1{
-            assistantSpeakFemale(number: number)
-        }
         
-        if sender.isOn {
-            print("switch is on")
-        } else {
-            print("switch is off")
+        if sender.tag == 0{
+            assistantSpeak.identifier = "com.apple.ttsbundle.siri_female_en-US_compact"
+            assistantSpeak.assistantSpeak(number: 0)
+        }
+   
+        
+        if sender.tag == 1{
+            assistantSpeak.identifier = "com.apple.ttsbundle.siri_male_en-US_compact"
+            assistantSpeak.assistantSpeak(number: 0)
         }
         
         if !sender.isOn {
-            voice.stopSpeaking(at: .immediate)
+            assistantSpeak.voice.stopSpeaking(at: .immediate)
         }
         
     }
@@ -89,42 +65,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 print("touch began")
             // handle drag began
             case .moved:
-                var textLine = AVSpeechUtterance()
-                let instruction = instructionBank.list[number].sentence
-                textLine = AVSpeechUtterance(string: instruction)
-                textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-US_compact")
-                textLine.rate = slider.value
-                
-                voice.speak(textLine)
+               
                 print("touch move")
             // handle drag moved
             case .ended:
                 print("touch ended")
-                voice.stopSpeaking(at: .word)
             // handle drag ended
             default:
                 break
             }
         }
     }
-    
-    func assistantSpeakFemale(number: Int) {
-        let instruction = instructionBank.list[number].sentence
-        textLine = AVSpeechUtterance(string: instruction)
-        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
-        textLine.rate = slider.value
-        
-        voice.speak(textLine)
-    }
-    func assistantSpeakMale(number: Int) {
-        var textLine = AVSpeechUtterance()
-        let instruction = instructionBank.list[number].sentence
-        textLine = AVSpeechUtterance(string: instruction)
-        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-US_compact")
-        textLine.rate = slider.value
-        
-        voice.speak(textLine)
-    }
-    
-    
 }
