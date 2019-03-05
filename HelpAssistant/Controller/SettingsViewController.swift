@@ -29,9 +29,9 @@ class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
         femaleOnOutlet.isOn = true
         maleOnOutlet.isOn = false
         assistantSpeak.identifier = "com.apple.ttsbundle.siri_female_en-US_compact"
+        assistantSpeak.rate = slider.value
         assistantSpeak.assistantSpeak(number: 0)
         UserDefaults.standard.set("com.apple.ttsbundle.siri_female_en-US_compact", forKey: "identifire")
-        
     }
     
     @IBAction func maleOn(_ sender: UISwitch) {
@@ -40,9 +40,8 @@ class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
         maleOnOutlet.isOn = true
         assistantSpeak.identifier = "com.apple.ttsbundle.siri_male_en-US_compact"
         assistantSpeak.assistantSpeak(number: 0)
-         UserDefaults.standard.set("com.apple.ttsbundle.siri_male_en-US_compact", forKey: "identifire")
+        UserDefaults.standard.set("com.apple.ttsbundle.siri_male_en-US_compact", forKey: "identifire")
     }
-    
     
     @IBAction func sliderValue(_ sender: UISlider) {
         slider.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
@@ -51,11 +50,11 @@ class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
     @objc func onSliderValChanged(slider: UISlider, event: UIEvent) {
         if let touchEvent = event.allTouches?.first {
             switch touchEvent.phase {
-           
-                
+            case .began:
+                assistantSpeak.voice.stopSpeaking(at: .immediate)
             case .ended:
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.success)
+                assistantSpeak.rate = slider.value
+                assistantSpeak.assistantSpeak(number: 0)
                 UserDefaults.standard.set(slider.value, forKey: "rate")
             default:
                 break
@@ -65,7 +64,6 @@ class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     @IBAction func backButton(_ sender: UIButton) {
         performSegue(withIdentifier: "backSeg", sender: self)
+        assistantSpeak.voice.stopSpeaking(at: .immediate)
     }
-    
-    
 }
