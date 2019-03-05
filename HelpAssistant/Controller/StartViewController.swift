@@ -45,8 +45,6 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         assistantSpeak.assistantSpeak(number: 0)
     }
     
-   
-    
     @objc func flag(){
         seconds += 1
         
@@ -69,7 +67,6 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         }
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         allTheButtons.forEach { (button) in
