@@ -1,61 +1,62 @@
 import UIKit
 import AVFoundation
+import AudioToolbox
 
 class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
-   
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var femaleOnOutlet: UISwitch!
+    @IBOutlet weak var maleOnOutlet: UISwitch!
     
     var assistantSpeak = AssistantSpeak()
     
     override func viewDidLoad() {
-        
+        if UserDefaults.standard.string(forKey: "identifire") == "com.apple.ttsbundle.siri_female_en-US_compact" {
+            femaleOnOutlet.isOn = true
+            maleOnOutlet.isOn = false
+        } else {
+            femaleOnOutlet.isOn = false
+            maleOnOutlet.isOn = true
+        }
+        slider.value = UserDefaults.standard.float(forKey: "rate")
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
-
     }
     
+    @IBAction func femaleOn(_ sender: UISwitch) {
+        assistantSpeak.voice.stopSpeaking(at: .immediate)
+        femaleOnOutlet.isOn = true
+        maleOnOutlet.isOn = false
+        assistantSpeak.identifier = "com.apple.ttsbundle.siri_female_en-US_compact"
+        assistantSpeak.assistantSpeak(number: 0)
+        UserDefaults.standard.set("com.apple.ttsbundle.siri_female_en-US_compact", forKey: "identifire")
+        
+    }
     
-    @objc func switchChanged(_ sender : UISwitch!){
-        
-        
-        if sender.tag == 0{
-            assistantSpeak.identifier = "com.apple.ttsbundle.siri_female_en-US_compact"
-            assistantSpeak.assistantSpeak(number: 0)
-        }
-   
-        
-        if sender.tag == 1{
-            assistantSpeak.identifier = "com.apple.ttsbundle.siri_male_en-US_compact"
-            assistantSpeak.assistantSpeak(number: 0)
-        }
-        
-        if !sender.isOn {
-            assistantSpeak.voice.stopSpeaking(at: .immediate)
-        }
-        
+    @IBAction func maleOn(_ sender: UISwitch) {
+        assistantSpeak.voice.stopSpeaking(at: .immediate)
+        femaleOnOutlet.isOn = false
+        maleOnOutlet.isOn = true
+        assistantSpeak.identifier = "com.apple.ttsbundle.siri_male_en-US_compact"
+        assistantSpeak.assistantSpeak(number: 0)
+         UserDefaults.standard.set("com.apple.ttsbundle.siri_male_en-US_compact", forKey: "identifire")
     }
     
     
     @IBAction func sliderValue(_ sender: UISlider) {
-        
         slider.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
     }
     
     @objc func onSliderValChanged(slider: UISlider, event: UIEvent) {
         if let touchEvent = event.allTouches?.first {
             switch touchEvent.phase {
-            case .began:
-                print("touch began")
-            // handle drag began
-            case .moved:
-               
-                print("touch move")
-            // handle drag moved
+           
+                
             case .ended:
-                print("touch ended")
-            // handle drag ended
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+                UserDefaults.standard.set(slider.value, forKey: "rate")
             default:
                 break
             }
@@ -63,7 +64,6 @@ class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
     
     @IBAction func backButton(_ sender: UIButton) {
-        
         performSegue(withIdentifier: "backSeg", sender: self)
     }
     

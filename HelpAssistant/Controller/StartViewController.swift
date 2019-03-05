@@ -43,8 +43,9 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         waveAnimation.start()
         assistantSpeak.assistantSpeak(number: 0)
-
     }
+    
+   
     
     @objc func flag(){
         seconds += 1
@@ -74,6 +75,8 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         allTheButtons.forEach { (button) in
             button.isUserInteractionEnabled = true
         }
+         navigationController?.navigationBar.isHidden = false
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     func recordAndRecognizeSpeech() {

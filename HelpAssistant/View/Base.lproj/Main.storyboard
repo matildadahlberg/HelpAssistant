@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="regnr" translatesAutoresizingMaskIntoConstraints="NO" id="CKn-RR-eKn">
-                                <rect key="frame" x="32.666666666666657" y="88" width="310" height="110"/>
+                                <rect key="frame" x="32.666666666666657" y="44" width="310" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="310" id="2u7-Wg-NxT"/>
                                     <constraint firstAttribute="height" constant="110" id="RoU-6C-dkE"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVg-n2-zX6">
-                                <rect key="frame" x="0.0" y="218" width="375" height="332"/>
+                                <rect key="frame" x="0.0" y="174" width="375" height="376"/>
                                 <subviews>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-ol-2Hr">
                                         <rect key="frame" x="16" y="184" width="343" height="65"/>
@@ -283,10 +283,16 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQG-AJ-k47">
                                 <rect key="frame" x="295" y="226" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="femaleOn:" destination="6Bx-Bc-uRt" eventType="valueChanged" id="CA4-w6-PyB"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGM-Bm-yXs">
                                 <rect key="frame" x="295" y="285" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="maleOn:" destination="6Bx-Bc-uRt" eventType="valueChanged" id="RpZ-sU-2cw"/>
+                                </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdM-NH-IRN">
                                 <rect key="frame" x="16" y="44" width="25" height="25"/>
@@ -301,6 +307,8 @@
                         <viewLayoutGuide key="safeArea" id="eM2-wR-lCy"/>
                     </view>
                     <connections>
+                        <outlet property="femaleOnOutlet" destination="eQG-AJ-k47" id="8gL-Ru-6zr"/>
+                        <outlet property="maleOnOutlet" destination="jGM-Bm-yXs" id="M9V-QQ-4d6"/>
                         <outlet property="slider" destination="1jF-th-mf5" id="DYp-Qu-TZZ"/>
                         <segue destination="jqE-We-neU" kind="show" identifier="backSeg" id="gWg-Rg-QFY"/>
                     </connections>
@@ -338,7 +346,7 @@
         <image name="regnr" width="1200" height="411"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mzj-qg-ial"/>
+        <segue reference="gWg-Rg-QFY"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
