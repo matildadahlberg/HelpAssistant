@@ -141,11 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				EB434D82222034750002153F /* AppDelegate.swift */,
-				7B71C324222D43AB00F96B76 /* SpeechRecognizerManager.swift */,
 				EB270CAC2226AF270084169A /* StartViewController.swift */,
 				EB270C65222044DE0084169A /* TalkViewController.swift */,
 				EBA637B2222D283200AF3DB7 /* SettingsViewController.swift */,
-				7B71C326222E6C1200F96B76 /* AssistantSpeak.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -157,6 +155,15 @@
 				EB434D86222034750002153F /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7BBA5970222E841E00B36AD7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7B71C324222D43AB00F96B76 /* SpeechRecognizerManager.swift */,
+				7B71C326222E6C1200F96B76 /* AssistantSpeak.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		EB434D76222034750002153F = {
@@ -184,6 +191,7 @@
 		EB434D81222034750002153F /* HelpAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				7BBA5970222E841E00B36AD7 /* Managers */,
 				7B71C2D9222554C300F96B76 /* Model */,
 				7B71C3212227F21100F96B76 /* View */,
 				7B71C3202227F1FF00F96B76 /* Controller */,

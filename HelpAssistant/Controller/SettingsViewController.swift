@@ -1,11 +1,9 @@
 import UIKit
 import AVFoundation
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate {
+class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
-    var list = ["Female", "Male"]
-    
-    @IBOutlet weak var tableView: UITableView!
+   
     @IBOutlet weak var slider: UISlider!
     
     var assistantSpeak = AssistantSpeak()
@@ -13,24 +11,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let switchView = UISwitch(frame: .zero)
-        switchView.tag = indexPath.row
-        
-        switchView.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
-        cell.accessoryView = switchView
-        cell.textLabel?.text = list[indexPath.row]
-        cell.textLabel?.textColor = UIColor.white
-        
-        
-        return cell
-    }
     
     @objc func switchChanged(_ sender : UISwitch!){
         
@@ -76,4 +61,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
+    
+    @IBAction func backButton(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "backSeg", sender: self)
+    }
+    
+    
 }

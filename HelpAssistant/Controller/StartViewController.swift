@@ -12,25 +12,23 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
-    let instructionBank = InstructionBank()
-    let voice = AVSpeechSynthesizer()
-    var number = 0
     var seconds = 0
     var timer = Timer()
     var speechTime = Timer()
     var speechSec = 0
     
+    var assistantSpeak = AssistantSpeak()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        waveAnimation.start()
-        voice.delegate = self
-        
+        assistantSpeak.voice.delegate = self
+ 
         allTheButtons.forEach { (button) in
             button.layer.cornerRadius = 15
             button.layer.borderColor = UIColor.red.cgColor
             button.layer.borderWidth = 1
         }
-        
+
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSession.Category.playAndRecord, mode: .spokenAudio, options: .defaultToSpeaker)
@@ -38,18 +36,22 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         } catch {
             print("Error")
         }
-        assistantSpeak(number: number)
-        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.flag), userInfo: nil, repeats: true)
-        
         speechTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        waveAnimation.start()
+        assistantSpeak.assistantSpeak(number: 0)
+
     }
     
     @objc func flag(){
         seconds += 1
         
         if seconds == 25{
-            assistantSpeakSorry()
+            assistantSpeak.assistantSpeak(number: 5)
+            waveAnimation.start()
             seconds = 0
         }
     }
@@ -65,30 +67,13 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
             speechSec = 0
         }
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         allTheButtons.forEach { (button) in
             button.isUserInteractionEnabled = true
         }
-    }
-    
-    func assistantSpeak(number: Int) {
-        var textLine = AVSpeechUtterance()
-        let instruction = instructionBank.list[number].sentence
-        textLine = AVSpeechUtterance(string: instruction)
-        textLine.rate = 0.4
-        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
-        voice.speak(textLine)
-    }
-    
-    func assistantSpeakSorry() {
-        var textLine = AVSpeechUtterance()
-        let instruction = "Sorry i couldn't here you"
-        textLine = AVSpeechUtterance(string: instruction)
-        textLine.rate = 0.4
-        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
-        voice.speak(textLine)
     }
     
     func recordAndRecognizeSpeech() {
@@ -143,29 +128,17 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     @IBAction func buttonPressed(_ sender: Any) {
         let button = sender as? UIButton
         button?.isUserInteractionEnabled = false
-        // maybe need to check if an animation is already in progress before calling performSegue.
-        voice.stopSpeaking(at: .word)
-        waveAnimation.stop()
-        timer.invalidate()
-        speechTime.invalidate()
-        recognitionTask?.cancel()
-        audioEngine.inputNode.removeTap(onBus: 0)
+        cancelActivities()
         self.performSegue(withIdentifier: "segueID", sender: button?.tag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? TalkViewController, let number = sender as? Int {
             vc.number = number
-            voice.stopSpeaking(at: .immediate)
-            recognitionTask?.cancel()
-            waveAnimation.stop()
-            timer.invalidate()
-            speechTime.invalidate()
-            audioEngine.inputNode.removeTap(onBus: 0)
+            cancelActivities()
         }
-        voice.stopSpeaking(at: .immediate)
-        recognitionTask?.cancel()
-        audioEngine.inputNode.removeTap(onBus: 0)
+        cancelActivities()
+
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
@@ -173,8 +146,13 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
     
     @IBAction func settingPressed(_ sender: Any) {
-        voice.stopSpeaking(at: .immediate)
+        cancelActivities()
+    }
+    
+    func cancelActivities() {
+        assistantSpeak.voice.stopSpeaking(at: .immediate)
         recognitionTask?.cancel()
+        waveAnimation.stop()
         timer.invalidate()
         speechTime.invalidate()
         audioEngine.inputNode.removeTap(onBus: 0)

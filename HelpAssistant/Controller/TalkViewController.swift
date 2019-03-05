@@ -15,16 +15,15 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     var number = 0
     let instructionBank = InstructionBank()
     var isListening: Bool = false
-    let voice = AVSpeechSynthesizer()
-    var textLine = AVSpeechUtterance()
     var isFinal = false
     var speechTime = Timer()
     var speechSec = 0
+    var assistantSpeak = AssistantSpeak()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         isFinal = true
-        voice.delegate = self
+        assistantSpeak.voice.delegate = self
         waveAnimation.start()
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -33,10 +32,14 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
         } catch {
             print("Error")
         }
-        assistantSpeak(number: number)
+        assistantSpeak.assistantSpeak(number: number)
         detectedTextLabel.text = instructionBank.list[number].sentence
-        
         speechTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+
     }
     
     @objc func updateTime(){
@@ -49,15 +52,6 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
             audioEngine.inputNode.removeTap(onBus: 0)
             speechSec = 0
         }
-    }
-    
-    func assistantSpeak(number: Int) {
-        var textLine = AVSpeechUtterance()
-        let instruction = instructionBank.list[number].sentence
-        textLine = AVSpeechUtterance(string: instruction)
-        textLine.rate = 0.4
-        textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
-        voice.speak(textLine)
     }
     
     func recordAndRecognizeSpeech() {
@@ -97,25 +91,17 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     func checkForWordsSaid(resultString: String) {
         switch resultString {
         case "repeat":
-            let instruction = instructionBank.list[number].sentence
-            textLine = AVSpeechUtterance(string: instruction)
-            textLine.rate = 0.4
-            textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
             detectedTextLabel.text = instructionBank.list[number].sentence
             if self.isFinal {
-                voice.speak(textLine)
+                assistantSpeak.assistantSpeak(number: number)
                 isFinal = false
             }
             waveAnimation.start()
             
         case "help":
-            let instruction = instructionBank.list[number].explenation
-            textLine = AVSpeechUtterance(string: instruction)
-            textLine.rate = 0.4
-            textLine.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact")
             detectedTextLabel.text = instructionBank.list[number].explenation
             if self.isFinal {
-                voice.speak(textLine)
+                assistantSpeak.assistantSpeakExplenation(number: number)
                 isFinal = false
             }
             waveAnimation.start()
@@ -125,19 +111,20 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
         }
     }
     
+    
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         waveAnimation.stop()
         if isFinal == false{
-            self.voice.stopSpeaking(at: .word)
+            assistantSpeak.voice.stopSpeaking(at: .word)
             isFinal = true
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        voice.stopSpeaking(at: .immediate)
-        waveAnimation.stop()
-        speechTime.invalidate()
-        recognitionTask?.cancel()
-        audioEngine.inputNode.removeTap(onBus: 0)
+
+   
+    @IBAction func backButton(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "backID", sender: self)
+   
     }
+    
 }
