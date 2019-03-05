@@ -6,7 +6,6 @@ import SwiftyWave
 class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     @IBOutlet weak var detectedTextLabel: UILabel!
-    
     @IBOutlet weak var waveAnimation: SwiftyWaveView!
     
     let audioEngine = AVAudioEngine()
@@ -19,7 +18,9 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     let voice = AVSpeechSynthesizer()
     var textLine = AVSpeechUtterance()
     var isFinal = false
-    
+    var speechTime = Timer()
+    var speechSec = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         isFinal = true
@@ -34,7 +35,20 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
         }
         assistantSpeak(number: number)
         detectedTextLabel.text = instructionBank.list[number].sentence
-        recordAndRecognizeSpeech()
+        
+        speechTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTime(){
+        speechSec += 1
+        if speechSec == 1{
+            recordAndRecognizeSpeech()
+        }
+        if speechSec == 55{
+            recognitionTask?.cancel()
+            audioEngine.inputNode.removeTap(onBus: 0)
+            speechSec = 0
+        }
     }
     
     func assistantSpeak(number: Int) {
@@ -112,7 +126,6 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        print("speech finished")
         waveAnimation.stop()
         if isFinal == false{
             self.voice.stopSpeaking(at: .word)
@@ -122,8 +135,9 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         voice.stopSpeaking(at: .immediate)
-        recognitionTask?.cancel()
         waveAnimation.stop()
+        speechTime.invalidate()
+        recognitionTask?.cancel()
+        audioEngine.inputNode.removeTap(onBus: 0)
     }
-    
 }
