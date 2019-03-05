@@ -302,6 +302,19 @@
                                     <action selector="backButton:" destination="6Bx-Bc-uRt" eventType="touchUpInside" id="3ff-Cu-FEJ"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="turtle" translatesAutoresizingMaskIntoConstraints="NO" id="aji-Bg-0Gv">
+                                <rect key="frame" x="38" y="522" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rabbit" translatesAutoresizingMaskIntoConstraints="NO" id="EDa-DQ-f3k">
+                                <rect key="frame" x="322" y="524" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xI-iF-Wg3">
+                                <rect key="frame" x="16" y="272" width="359" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.094360895454883575" green="0.17176094651222229" blue="0.3490375280380249" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="eM2-wR-lCy"/>
@@ -343,7 +356,9 @@
     </scenes>
     <resources>
         <image name="backButton" width="156.52174377441406" height="156.52174377441406"/>
+        <image name="rabbit" width="156" height="156"/>
         <image name="regnr" width="1200" height="411"/>
+        <image name="turtle" width="156" height="156"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gWg-Rg-QFY"/>
