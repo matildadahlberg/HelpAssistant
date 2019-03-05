@@ -17,4 +17,12 @@ class AssistantSpeak {
         textLine.rate = rate
         voice.speak(textLine)
     }
+    
+    func assistantSpeakExplenation(number: Int) {
+        let instruction = instructionBank.list[number].explenation
+        textLine = AVSpeechUtterance(string: instruction)
+        textLine.voice = AVSpeechSynthesisVoice(identifier: identifier)
+        textLine.rate = rate
+        voice.speak(textLine)
+    }
 }
