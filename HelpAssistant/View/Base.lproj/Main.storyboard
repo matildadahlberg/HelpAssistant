@@ -268,8 +268,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdM-NH-IRN">
                                 <rect key="frame" x="16" y="61" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="hId-X7-2R0"/>
-                                    <constraint firstAttribute="width" constant="25" id="p9p-ES-qZu"/>
+                                    <constraint firstAttribute="height" constant="25" id="kgW-P3-yBA"/>
+                                    <constraint firstAttribute="width" constant="25" id="pIq-Dm-OIg"/>
                                 </constraints>
                                 <state key="normal" image="backButton"/>
                                 <connections>
@@ -284,8 +284,9 @@
                                 <rect key="frame" x="322" y="524" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ah-Pb-E9h" userLabel="voiceView">
-                                <rect key="frame" x="0.0" y="171" width="375" height="470"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ah-Pb-E9h" userLabel="voiceView">
+                                <rect key="frame" x="0.0" y="171" width="375" height="209"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTP-fw-xWa">
                                         <rect key="frame" x="17" y="47" width="82" height="24"/>
@@ -313,8 +314,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voP-CS-ACm">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Voice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voP-CS-ACm">
                                         <rect key="frame" x="17" y="0.0" width="65" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -327,20 +329,12 @@
                                         </connections>
                                     </switch>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="voP-CS-ACm" firstAttribute="top" secondItem="9ah-Pb-E9h" secondAttribute="top" id="DVe-hS-HVR"/>
-                                    <constraint firstItem="voP-CS-ACm" firstAttribute="leading" secondItem="9ah-Pb-E9h" secondAttribute="leading" constant="17" id="nmv-2W-iaZ"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.094360895454883575" green="0.17176094651222229" blue="0.3490375280380249" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="9ah-Pb-E9h" firstAttribute="trailing" secondItem="eM2-wR-lCy" secondAttribute="trailing" id="0xz-3f-Sxa"/>
-                            <constraint firstItem="RdM-NH-IRN" firstAttribute="leading" secondItem="eM2-wR-lCy" secondAttribute="leading" constant="16" id="GVA-PJ-YFh"/>
-                            <constraint firstItem="9ah-Pb-E9h" firstAttribute="top" secondItem="RdM-NH-IRN" secondAttribute="bottom" constant="85" id="Pf5-rm-8aa"/>
-                            <constraint firstItem="9ah-Pb-E9h" firstAttribute="centerY" secondItem="tyC-PY-MtF" secondAttribute="centerY" id="fzG-A6-XEI"/>
-                            <constraint firstItem="RdM-NH-IRN" firstAttribute="top" secondItem="eM2-wR-lCy" secondAttribute="top" constant="17" id="gec-LD-Oz5"/>
-                            <constraint firstItem="9ah-Pb-E9h" firstAttribute="leading" secondItem="eM2-wR-lCy" secondAttribute="leading" id="mpV-bI-SkA"/>
+                            <constraint firstItem="RdM-NH-IRN" firstAttribute="top" secondItem="eM2-wR-lCy" secondAttribute="top" constant="17" id="A5U-IO-fhv"/>
+                            <constraint firstItem="RdM-NH-IRN" firstAttribute="leading" secondItem="eM2-wR-lCy" secondAttribute="leading" constant="16" id="Rmk-Ue-EKi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eM2-wR-lCy"/>
                     </view>
@@ -353,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lvt-kB-Wh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2125.5999999999999" y="23.838080959520241"/>
+            <point key="canvasLocation" x="2125.5999999999999" y="23.645320197044335"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dyS-Ve-Ogp">
