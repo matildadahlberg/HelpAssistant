@@ -122,9 +122,15 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
 
    
     @IBAction func backButton(_ sender: UIButton) {
-        
         performSegue(withIdentifier: "backID", sender: self)
-   
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        assistantSpeak.voice.stopSpeaking(at: .immediate)
+        recognitionTask?.cancel()
+        waveAnimation.stop()
+        speechTime.invalidate()
+        audioEngine.inputNode.removeTap(onBus: 0)
     }
     
 }
