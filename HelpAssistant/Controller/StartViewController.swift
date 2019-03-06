@@ -12,8 +12,6 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
-    var seconds = 0
-    var timer = Timer()
     var speechTime = Timer()
     var speechSec = 0
     
@@ -36,7 +34,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         } catch {
             print("Error")
         }
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.flag), userInfo: nil, repeats: true)
+        
         speechTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
     }
     
@@ -45,15 +43,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         assistantSpeak.assistantSpeak(number: 0)
     }
     
-    @objc func flag(){
-        seconds += 1
-        
-        if seconds == 25{
-            assistantSpeak.assistantSpeak(number: 5)
-            waveAnimation.start()
-            seconds = 0
-        }
-    }
+ 
     
     @objc func updateTime(){
         speechSec += 1
@@ -153,7 +143,6 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         assistantSpeak.voice.stopSpeaking(at: .immediate)
         recognitionTask?.cancel()
         waveAnimation.stop()
-        timer.invalidate()
         speechTime.invalidate()
         audioEngine.inputNode.removeTap(onBus: 0)
     }

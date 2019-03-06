@@ -36,7 +36,7 @@
                                             <constraint firstAttribute="height" constant="65" id="iPf-Nw-khr"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
-                                        <state key="normal" title="&quot;TIRE&quot;">
+                                        <state key="normal" title="&quot;FUEL&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -51,7 +51,7 @@
                                             <constraint firstAttribute="width" constant="343" id="WPr-W0-6P3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
-                                        <state key="normal" title="&quot;FUEL&quot;">
+                                        <state key="normal" title="&quot;ENGINE&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -66,7 +66,7 @@
                                             <constraint firstAttribute="height" constant="65" id="NBo-oh-gGA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
-                                        <state key="normal" title="&quot;OIL&quot;">
+                                        <state key="normal" title="&quot;TIRE&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -81,7 +81,7 @@
                                             <constraint firstAttribute="width" constant="343" id="vI9-Cw-FCN"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
-                                        <state key="normal" title="&quot;ENGINE&quot;">
+                                        <state key="normal" title="&quot;OIL&quot;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -183,7 +183,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VG9-Ic-I9A">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VG9-Ic-I9A">
                                 <rect key="frame" x="37.666666666666657" y="166" width="300" height="324"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="324" id="h6m-V8-P4U"/>
@@ -204,7 +204,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1f-FU-0he">
-                                <rect key="frame" x="16" y="44" width="25" height="25"/>
+                                <rect key="frame" x="16" y="61" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="backButton"/>
                                 <connections>
@@ -216,6 +216,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Hlw-Nj-Ru9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0Bc-Ys-gEO"/>
+                            <constraint firstItem="VG9-Ic-I9A" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="122" id="Bml-Hx-6aD"/>
                             <constraint firstItem="VG9-Ic-I9A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JIv-3l-lRW"/>
                             <constraint firstItem="Hlw-Nj-Ru9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Zd8-eb-TDM"/>
                             <constraint firstItem="mdp-Wm-d5X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dUh-2d-NV7"/>
@@ -266,36 +267,8 @@
                                     <action selector="sliderValue:" destination="6Bx-Bc-uRt" eventType="valueChanged" id="HfM-s8-i2p"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTP-fw-xWa">
-                                <rect key="frame" x="16" y="228" width="84" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9w-iA-I6G">
-                                <rect key="frame" x="16" y="285" width="74" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQG-AJ-k47">
-                                <rect key="frame" x="295" y="226" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="femaleOn:" destination="6Bx-Bc-uRt" eventType="valueChanged" id="CA4-w6-PyB"/>
-                                </connections>
-                            </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGM-Bm-yXs">
-                                <rect key="frame" x="295" y="285" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="maleOn:" destination="6Bx-Bc-uRt" eventType="valueChanged" id="RpZ-sU-2cw"/>
-                                </connections>
-                            </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdM-NH-IRN">
-                                <rect key="frame" x="16" y="44" width="25" height="25"/>
+                                <rect key="frame" x="16" y="61" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="backButton"/>
                                 <connections>
@@ -310,10 +283,44 @@
                                 <rect key="frame" x="322" y="524" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xI-iF-Wg3">
-                                <rect key="frame" x="16" y="272" width="359" height="1"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ah-Pb-E9h" userLabel="voiceView">
+                                <rect key="frame" x="0.0" y="171" width="375" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTP-fw-xWa">
+                                        <rect key="frame" x="17" y="47" width="84" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9w-iA-I6G">
+                                        <rect key="frame" x="17" y="91" width="74" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGM-Bm-yXs">
+                                        <rect key="frame" x="306" y="91" width="49" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="maleOn:" destination="6Bx-Bc-uRt" eventType="valueChanged" id="RpZ-sU-2cw"/>
+                                        </connections>
+                                    </switch>
+                                    <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xI-iF-Wg3">
+                                        <rect key="frame" x="17" y="82" width="358" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQG-AJ-k47">
+                                        <rect key="frame" x="306" y="43" width="49" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="femaleOn:" destination="6Bx-Bc-uRt" eventType="valueChanged" id="CA4-w6-PyB"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.094360895454883575" green="0.17176094651222229" blue="0.3490375280380249" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
