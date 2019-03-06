@@ -19,29 +19,25 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     var timer : Timer?
     
     var assistantSpeak = AssistantSpeak()
+    var audio = Audio()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         assistantSpeak.voice.delegate = self
- 
+        if assistantSpeak.rate == 0 {
+            assistantSpeak.rate = 0.5
+            assistantSpeak.identifier = "com.apple.ttsbundle.siri_female_en-US_compact"
+            UserDefaults.standard.set(assistantSpeak.rate, forKey: "rate")
+            UserDefaults.standard.set(assistantSpeak.identifier, forKey: "identifier")
+        }
         allTheButtons.forEach { (button) in
             button.layer.cornerRadius = 15
             button.layer.borderColor = UIColor.red.cgColor
             button.layer.borderWidth = 1
         }
-
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(AVAudioSession.Category.playAndRecord, mode: .spokenAudio, options: .defaultToSpeaker)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
-            print("Error")
-        }
-        
+        audio.audioOutput()
         speechTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
-        
-       startTimer()
-
+        startTimer()
     }
     
     override func viewDidAppear(_ animated: Bool) {

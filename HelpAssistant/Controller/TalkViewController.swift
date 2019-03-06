@@ -18,19 +18,14 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     var speechTime = Timer()
     var speechSec = 0
     var assistantSpeak = AssistantSpeak()
+    var audio = Audio()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         isFinal = true
         assistantSpeak.voice.delegate = self
         waveAnimation.start()
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(AVAudioSession.Category.playAndRecord, mode: .spokenAudio, options: .defaultToSpeaker)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
-            print("Error")
-        }
+        audio.audioOutput()
         assistantSpeak.assistantSpeak(number: number)
         detectedTextLabel.text = instructionBank.list[number].sentence
         speechTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
