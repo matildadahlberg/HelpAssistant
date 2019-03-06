@@ -14,7 +14,6 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
     var recognitionTask: SFSpeechRecognitionTask?
     var number = 0
     let instructionBank = InstructionBank()
-    var isListening: Bool = false
     var isFinal = false
     var speechTime = Timer()
     var speechSec = 0
