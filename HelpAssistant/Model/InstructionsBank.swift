@@ -17,6 +17,8 @@ class InstructionBank {
         
         list.append(InstructionModel(sentence: "Engine is all good, nothing to do", explenation: "Nothing to do, you can go back"))
         
+        list.append(InstructionModel(sentence: "Sorry i couldn't here you", explenation: ""))
+        
         
         
     }

@@ -15,6 +15,9 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
     var speechTime = Timer()
     var speechSec = 0
     
+    var seconds = 0
+    var timer : Timer?
+    
     var assistantSpeak = AssistantSpeak()
     
     override func viewDidLoad() {
@@ -36,13 +39,29 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         }
         
         speechTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+        
+       startTimer()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         waveAnimation.start()
         assistantSpeak.assistantSpeak(number: 0)
     }
-    
+    func startTimer()
+    {
+        if timer == nil {
+             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.flag), userInfo: nil, repeats: true)
+        }
+    }
+    @objc func flag(){
+        seconds += 1
+        
+        if seconds == 25{
+            assistantSpeak.assistantSpeak(number: 5)
+            seconds = 0
+        }
+    }
  
     
     @objc func updateTime(){
@@ -145,5 +164,15 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         waveAnimation.stop()
         speechTime.invalidate()
         audioEngine.inputNode.removeTap(onBus: 0)
+        
+        stopTimer()
+    }
+    
+    func stopTimer()
+    {
+        if timer != nil {
+            timer!.invalidate()
+            timer = nil
+        }
     }
 }
