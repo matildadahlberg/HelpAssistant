@@ -14,6 +14,7 @@
 		7B71C2D822252E8F00F96B76 /* InstructionsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71C2D722252E8F00F96B76 /* InstructionsBank.swift */; };
 		7B71C325222D43AB00F96B76 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71C324222D43AB00F96B76 /* SpeechRecognizerManager.swift */; };
 		7B71C327222E6C1200F96B76 /* AssistantSpeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71C326222E6C1200F96B76 /* AssistantSpeak.swift */; };
+		7B84B3382230185C00A44A26 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B84B3372230185C00A44A26 /* Audio.swift */; };
 		7E475DE52CF511AF1B4FBE56 /* Pods_HelpAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2447FE31E4AF0E84966DFB /* Pods_HelpAssistantTests.framework */; };
 		EB270C66222044DE0084169A /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB270C65222044DE0084169A /* TalkViewController.swift */; };
 		EB270CAD2226AF270084169A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB270CAC2226AF270084169A /* StartViewController.swift */; };
@@ -54,6 +55,7 @@
 		7B71C2D722252E8F00F96B76 /* InstructionsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsBank.swift; sourceTree = "<group>"; };
 		7B71C324222D43AB00F96B76 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
 		7B71C326222E6C1200F96B76 /* AssistantSpeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantSpeak.swift; sourceTree = "<group>"; };
+		7B84B3372230185C00A44A26 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		86DE0AB4FBB3BD513040453B /* Pods-HelpAssistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpAssistantUITests.release.xcconfig"; path = "Target Support Files/Pods-HelpAssistantUITests/Pods-HelpAssistantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D15F53547D12FF1EAD2B202D /* Pods_HelpAssistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelpAssistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E8C1D45564F9A953AA924B /* Pods-HelpAssistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpAssistantUITests.debug.xcconfig"; path = "Target Support Files/Pods-HelpAssistantUITests/Pods-HelpAssistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				EB434D82222034750002153F /* AppDelegate.swift */,
+				7B84B3372230185C00A44A26 /* Audio.swift */,
 				EB270CAC2226AF270084169A /* StartViewController.swift */,
 				EB270C65222044DE0084169A /* TalkViewController.swift */,
 				EBA637B2222D283200AF3DB7 /* SettingsViewController.swift */,
@@ -445,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B84B3382230185C00A44A26 /* Audio.swift in Sources */,
 				EB270CAD2226AF270084169A /* StartViewController.swift in Sources */,
 				7B71C2D622252BF500F96B76 /* InstructionModel.swift in Sources */,
 				EB270C66222044DE0084169A /* TalkViewController.swift in Sources */,

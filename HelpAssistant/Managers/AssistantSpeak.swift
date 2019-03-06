@@ -6,8 +6,9 @@ class AssistantSpeak {
     let instructionBank = InstructionBank()
     let voice = AVSpeechSynthesizer()
     var textLine = AVSpeechUtterance()
-    var identifier: String = UserDefaults.standard.string(forKey: "identifire") ?? "com.apple.ttsbundle.siri_female_en-US_compact"
+    var identifier: String = UserDefaults.standard.string(forKey: "identifier") ?? "com.apple.ttsbundle.siri_female_en-US_compact"
     var rate : Float = UserDefaults.standard.float(forKey: "rate")
+
     
     // MARK: FUNCTION IS SAYING THE SENTENSE
     func assistantSpeak(number: Int) {
