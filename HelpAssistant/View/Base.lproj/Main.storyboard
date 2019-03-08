@@ -141,7 +141,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Help Assistant" id="ta0-00-4NV">
                         <barButtonItem key="backBarButtonItem" title=" " id="GIS-4H-Koo"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Oqd-8v-CBH">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="Oqd-8v-CBH">
                             <inset key="imageInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <connections>
                                 <action selector="settingPressed:" destination="jqE-We-neU" id="VRC-tv-vvK"/>
@@ -162,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="-87.200000000000003" y="28.817733990147783"/>
         </scene>
-        <!--Talk View Controller-->
+        <!--Instruction-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TalkViewController" customModule="HelpAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Instruction" id="BYZ-38-t0r" customClass="TalkViewController" customModule="HelpAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,10 +222,10 @@
             </objects>
             <point key="canvasLocation" x="929" y="-296"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Edit-->
         <scene sceneID="VYj-tW-ybR">
             <objects>
-                <viewController id="6Bx-Bc-uRt" customClass="SettingsViewController" customModule="HelpAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Edit" id="6Bx-Bc-uRt" customClass="SettingsViewController" customModule="HelpAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tyC-PY-MtF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

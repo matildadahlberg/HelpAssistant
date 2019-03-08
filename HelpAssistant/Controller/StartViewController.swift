@@ -40,6 +40,7 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
         startTimer()
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         waveAnimation.start()
         assistantSpeak.assistantSpeak(number: 0)
