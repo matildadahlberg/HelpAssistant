@@ -21,12 +21,19 @@ class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
             maleOnOutlet.isOn = true
         }
         
+        let backButton = UIBarButtonItem(image: UIImage(named: "backButton"), style: .done, target: self, action: #selector(backButtonPressed))
+        self.navigationItem.leftBarButtonItem = backButton
+        
         slider.value = UserDefaults.standard.float(forKey: "rate")
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+    @objc func backButtonPressed() {
+        
+        assistantSpeak.voice.stopSpeaking(at: .immediate)
+        
+        self.navigationController?.popViewController(animated: true)
     }
+
     
     @IBAction func femaleOn(_ sender: UISwitch) {
         assistantSpeak.voice.stopSpeaking(at: .immediate)
@@ -67,8 +74,5 @@ class SettingsViewController: UIViewController, AVSpeechSynthesizerDelegate {
         }
     }
     
-    @IBAction func backButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "backSeg", sender: self)
-        assistantSpeak.voice.stopSpeaking(at: .immediate)
-    }
+ 
 }

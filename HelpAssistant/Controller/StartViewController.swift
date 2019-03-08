@@ -78,7 +78,6 @@ class StartViewController: UIViewController, AVSpeechSynthesizerDelegate {
             button.isUserInteractionEnabled = true
         }
          navigationController?.navigationBar.isHidden = false
-        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     func recordAndRecognizeSpeech() {

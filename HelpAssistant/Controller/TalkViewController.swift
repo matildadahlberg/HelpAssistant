@@ -29,12 +29,23 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
         assistantSpeak.assistantSpeak(number: number)
         detectedTextLabel.text = instructionBank.list[number].sentence
         speechTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+       
+        let backButton = UIBarButtonItem(image: UIImage(named: "backButton"), style: .done, target: self, action: #selector(backButtonPressed))
+        self.navigationItem.leftBarButtonItem = backButton
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
-
+    @objc func backButtonPressed() {
+        
+        assistantSpeak.voice.stopSpeaking(at: .immediate)
+        recognitionTask?.cancel()
+        waveAnimation.stop()
+        speechTime.invalidate()
+        audioEngine.inputNode.removeTap(onBus: 0)
+        
+        self.navigationController?.popViewController(animated: true)
     }
+
     
     @objc func updateTime(){
         speechSec += 1
@@ -100,7 +111,7 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
             }
             waveAnimation.start()
         case "back":
-            performSegue(withIdentifier: "backID", sender: self)
+            self.backButtonPressed()
         default: break
         }
     }
@@ -114,17 +125,4 @@ class TalkViewController: UIViewController, AVSpeechSynthesizerDelegate {
         }
     }
 
-   
-    @IBAction func backButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "backID", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        assistantSpeak.voice.stopSpeaking(at: .immediate)
-        recognitionTask?.cancel()
-        waveAnimation.stop()
-        speechTime.invalidate()
-        audioEngine.inputNode.removeTap(onBus: 0)
-    }
-    
 }
